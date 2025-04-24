@@ -1,0 +1,231 @@
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+h1,
+h2,
+h3 {
+  color: #0056b3; /* OpenAI-ish blue */
+}
+
+#upload-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input[type="file"],
+.form-group textarea {
+  width: 95%; /* Slightly less than 100% for padding */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  resize: vertical; /* Allow vertical resize */
+}
+
+.form-group small {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8em;
+  color: #666;
+}
+
+.checkbox-group label {
+  display: inline-block; /* Align checkbox and label */
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#status {
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+#results {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result-section {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.result-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+pre {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  white-space: pre-wrap; /* Wrap long lines */
+  word-wrap: break-word; /* Break long words */
+  font-family: monospace;
+  font-size: 0.95em;
+  max-height: 400px; /* Limit height */
+  overflow-y: auto; /* Add scrollbar if needed */
+}
+
+#results {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none; /* Initially hidden, shown by JS */
+}
+
+#processing-info {
+  background-color: #e7f3fe; /* Light blue background */
+  border-left: 4px solid #007bff; /* Blue left border */
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+#processing-info p {
+  margin: 5px 0;
+}
+
+.result-section {
+  margin-bottom: 20px; /* Increased margin */
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px; /* Increased padding */
+}
+
+.result-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0; /* No margin for the last section */
+}
+
+.result-header {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between title and button */
+  align-items: center; /* Vertically align items */
+  margin-bottom: 10px; /* Space below header */
+}
+
+.result-header h3 {
+  margin: 0; /* Remove default margin from h3 */
+  color: #333; /* Darker color for headers */
+}
+
+.copy-button {
+  background-color: #6c757d; /* Grey background */
+  color: white;
+  padding: 5px 10px; /* Smaller padding */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85em; /* Smaller font size */
+  transition: background-color 0.2s ease; /* Smooth transition */
+}
+
+.copy-button:hover {
+  background-color: #5a6268; /* Darker grey on hover */
+}
+
+pre {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+  font-size: 0.95em;
+  max-height: 400px;
+  overflow-y: auto;
+  /* Remove margin-top if header provides enough space */
+  margin-top: 0;
+}
+
+#processing-info {
+  background-color: #e7f3fe;
+  border-left: 4px solid #007bff;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+#processing-info p {
+  margin: 5px 0;
+}
+
+/* Style for Pyannote section within processing info */
+#pyannote-info {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed #ccc; /* Separator */
+}
+
+#pyannote-info p {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#pyannote-info ul {
+  list-style: none;
+  padding-left: 15px;
+  margin-top: 0;
+}
+
+#pyannote-info li {
+  margin-bottom: 3px;
+}
+
+#pyannote-info small {
+  display: block;
+  margin-top: 8px;
+  color: #666;
+  font-style: italic;
+}
+
+hr {
+  /* Style for separators in the form */
+  border: 0;
+  height: 1px;
+  background-color: #eee;
+  margin: 20px 0;
+}

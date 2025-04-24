@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.git/
+.gitignore
+.dockerignore
+*.DS_Store
+uploads/*
+!uploads/.keep # Optional: keep the directory structure but ignore contents

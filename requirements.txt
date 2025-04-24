@@ -1,0 +1,5 @@
+openai>=1.76.0     # Use a recent version
+Flask>=2.0.0
+pydub>=0.25.0
+python-dotenv # Good practice for local dev, not strictly needed in container if using runtime env vars
+requests # Often useful, good to include

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Audio Transcription</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <h1>Audio Transcription with GPT-4o & Diarization</h1>
+
+    <form id="upload-form" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">Audio File:</label>
+            <input type="file" id="file" name="file" accept=".mp3, .mp4, .mpeg, .mpga, .m4a, .wav, .webm" required>
+            <small>Max OpenAI size ~25MB (larger files chunked). Supported types: mp3, mp4, mpeg, mpga, m4a, wav,
+                webm</small>
+        </div>
+
+        <div class="form-group">
+            <label for="prompt">OpenAI Transcription Prompt:</label>
+            <textarea id="prompt" name="prompt" rows="3"
+                placeholder="Provide context for OpenAI transcription (e.g., 'This is a meeting about project Alpha.')"></textarea>
+            <small>Helps guide the initial transcription model.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="dictionary">Dictionary / Special Terms:</label>
+            <textarea id="dictionary" name="dictionary" rows="3"
+                placeholder="List proper nouns, acronyms, specific spellings (e.g., ZyntriQix, CEO, Project X). Used in OpenAI prompt & GPT-4 post-processing prompt."></textarea>
+            <small>Helps correct specific words.</small>
+        </div>
+
+        <hr> <!-- Separator -->
+
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="post_process" name="post_process">
+            <label for="post_process">Post-process with GPT-4.1?</label>
+            <small>Uses GPT-4.1 to refine spelling, punctuation, formatting.</small>
+        </div>
+
+        <!-- New field for GPT-4.1 post-processing prompt -->
+        <div class="form-group">
+            <label for="post_process_prompt">GPT-4.1 Post-Processing Instructions:</label>
+            <textarea id="post_process_prompt" name="post_process_prompt" rows="4"
+                placeholder="Enter specific instructions for the GPT-4.1 post-processing step (e.g., 'Format as a meeting summary.', 'Ensure speaker tags are like [SPEAKER_NAME]:'). If blank, default correction prompt is used."></textarea>
+            <small>This is the system prompt used for the GPT-4.1 Turbo post-processing step.</small>
+        </div>
+
+        <hr> <!-- Separator -->
+
+        <!-- New checkbox for Pyannote Diarization -->
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="request_diarization" name="request_diarization">
+            <label for="request_diarization">Request Speaker Diarization (via Pyannote.ai)?</label>
+            <small>Uploads file to Pyannote.ai and starts diarization job. Requires PYANNOTE_API_KEY set on server.
+                Results are NOT displayed here (job is async).</small>
+        </div>
+
+        <button type="submit" id="submit-button">Transcribe</button>
+    </form>
+
+    <div id="status"></div>
+
+    <div id="results">
+        <h2>Results:</h2>
+
+        <div id="processing-info" style="display: none;">
+            <p>OpenAI processing took: <strong id="time-taken">---</strong> seconds.</p>
+            <p>File processed by OpenAI as: <strong id="chunk-count">---</strong> piece(s).</p>
+            <!-- New display area for Pyannote status -->
+            <div id="pyannote-info" style="display: none;">
+                <p>Pyannote.ai Diarization Job:</p>
+                <ul>
+                    <li>Status: <strong id="pyannote-status">---</strong></li>
+                    <li>Job ID: <strong id="pyannote-job-id">---</strong></li>
+                </ul>
+                <small>(Note: Diarization runs asynchronously. Check Pyannote.ai for results using the Job ID.)</small>
+            </div>
+        </div>
+
+        <div class="result-section">
+            <div class="result-header">
+                <h3>Raw OpenAI Transcription:</h3>
+                <button class="copy-button" id="copy-raw-button" data-target="transcription-output">Copy</button>
+            </div>
+            <pre id="transcription-output">---</pre>
+        </div>
+
+        <div class="result-section" id="post-processed-section" style="display: none;">
+            <div class="result-header">
+                <h3>Post-Processed Transcription (GPT-4.1):</h3>
+                <button class="copy-button" id="copy-post-button" data-target="post-processed-output">Copy</button>
+            </div>
+            <pre id="post-processed-output">---</pre>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
