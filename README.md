@@ -11,3 +11,5 @@ docker run -p 5000:5000 \
   -e PYANNOTE_API_KEY="<Pyannote AI API Key>" \
   --rm --name my-transcriber openai-transcriber
 ```
+
+**OpenAI API Key: https://platform.openai.com/account/api-keys**
